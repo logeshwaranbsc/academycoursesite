@@ -1,6 +1,6 @@
 <?php
 /** @var array $settings */
-$academyName = $settings['academy_name'] ?? 'Meridian Academy';
+$academyName = $settings['academy_name'] ?? 'Digital Teenz Academy';
 $logoUrl = $settings['logo_url'] ?? '';
 $phone = $settings['phone'] ?? '+91 98765 43210';
 $email = $settings['email'] ?? 'info@meridianacademy.com';

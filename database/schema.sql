@@ -1,5 +1,5 @@
 -- =============================================================================
--- MERIDIAN ACADEMY — Complete PostgreSQL Schema
+-- Digital Teenz Academy — Complete PostgreSQL Schema
 -- Database: Supabase PostgreSQL
 -- =============================================================================
 -- HOW TO USE:
@@ -93,7 +93,7 @@ COMMENT ON TABLE personal_access_tokens IS 'Laravel Sanctum bearer tokens — ma
 
 CREATE TABLE IF NOT EXISTS site_settings (
     id              BIGSERIAL       PRIMARY KEY,
-    academy_name    VARCHAR(255)    NOT NULL DEFAULT 'Meridian Academy',
+    academy_name    VARCHAR(255)    NOT NULL DEFAULT 'Digital Teenz Academy',
     logo_url        TEXT            DEFAULT NULL,
     email           VARCHAR(255)    DEFAULT NULL,
     phone           VARCHAR(30)     DEFAULT NULL,
@@ -424,7 +424,7 @@ INSERT INTO site_settings (
     address
 ) VALUES (
     1,
-    'Meridian Academy',
+    'Digital Teenz Academy',
     'info@meridianacademy.com',
     '+91 98765 43210',
     '+91 98765 43210',

@@ -1,5 +1,5 @@
 -- =============================================================================
--- MERIDIAN ACADEMY — SQLite Local File Storage Schema
+-- Digital Teenz Academy — SQLite Local File Storage Schema
 -- =============================================================================
 
 CREATE TABLE IF NOT EXISTS admins (
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS personal_access_tokens (
 
 CREATE TABLE IF NOT EXISTS site_settings (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
-    academy_name    VARCHAR(255)    NOT NULL DEFAULT 'Meridian Academy',
+    academy_name    VARCHAR(255)    NOT NULL DEFAULT 'Digital Teenz Academy',
     logo_url        TEXT            DEFAULT NULL,
     email           VARCHAR(255)    DEFAULT NULL,
     phone           VARCHAR(30)     DEFAULT NULL,
@@ -167,5 +167,5 @@ INSERT OR IGNORE INTO admins (name, email, password)
 VALUES ('Administrator', 'admin@gmail.com', '$2y$10$iJ4T6oVZx3aa3o.Huk9OauoepRwPvRyLK/yw4W1RiF5iZqrDfgIAK');
 
 INSERT OR IGNORE INTO site_settings (id, academy_name, email, phone, whatsapp, address)
-VALUES (1, 'Meridian Academy', 'info@meridianacademy.com', '+91 98765 43210', '+91 98765 43210', '123, Education Hub, Koramangala, Bangalore – 560 095');
+VALUES (1, 'Digital Teenz Academy', 'info@meridianacademy.com', '+91 98765 43210', '+91 98765 43210', '123, Education Hub, Koramangala, Bangalore – 560 095');
 

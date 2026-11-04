@@ -10,7 +10,7 @@ if ($limit !== null) {
     <div class="container-main">
         <div style="margin-bottom: 3rem; text-align: center;">
             <span class="section-label">Beyond The Books</span>
-            <h2 class="section-title">Life & Culture At Meridian Academy</h2>
+            <h2 class="section-title">Life & Culture At Digital Teenz Academy</h2>
             <div class="section-divider-center"></div>
             <p style="color: #4B5563; max-width: 650px; margin: 0 auto;">
                 Experience our vibrant campus energy: hackathons, industry project showcases, technical meetups, and graduation ceremonies.

@@ -1,5 +1,5 @@
 /**
- * Meridian Academy — Public Interactive Client JS (Vanilla JS)
+ * Digital Teenz Academy — Public Interactive Client JS (Vanilla JS)
  */
 
 document.addEventListener('DOMContentLoaded', () => {

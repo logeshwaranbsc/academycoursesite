@@ -18,7 +18,7 @@ class AuthController
         }
 
         return new Response(View::render('admin.login', [
-            'title' => 'Admin Login — Meridian Academy'
+            'title' => 'Admin Login — Digital Teenz Academy'
         ], null));
     }
 

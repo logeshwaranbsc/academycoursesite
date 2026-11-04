@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => $_ENV['APP_NAME'] ?? 'Meridian Academy',
+    'name' => $_ENV['APP_NAME'] ?? 'Digital Teenz Academy',
     'env' => $_ENV['APP_ENV'] ?? 'production',
     'debug' => filter_var($_ENV['APP_DEBUG'] ?? false, FILTER_VALIDATE_BOOLEAN),
     'url' => rtrim($_ENV['APP_URL'] ?? 'http://localhost:8000', '/'),

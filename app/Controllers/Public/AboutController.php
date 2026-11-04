@@ -18,8 +18,8 @@ class AboutController
         $data = [
             'settings' => $settingsRepo->get(),
             'courses' => $courseRepo->getActive(),
-            'title' => 'About Us — Our Mission & Story | Meridian Academy',
-            'metaDescription' => 'Learn about Meridian Academy\'s mission to bridge academia and industry with real project training and 1-on-1 mentorship.',
+            'title' => 'About Us — Our Mission & Story | Digital Teenz Academy',
+            'metaDescription' => 'Learn about Digital Teenz Academy\'s mission to bridge academia and industry with real project training and 1-on-1 mentorship.',
         ];
 
         return new Response(View::render('public.about', $data));

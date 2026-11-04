@@ -1,5 +1,5 @@
 /**
- * Meridian Academy — Admin Dashboard Scripts
+ * Digital Teenz Academy — Admin Dashboard Scripts
  */
 
 document.addEventListener('DOMContentLoaded', () => {

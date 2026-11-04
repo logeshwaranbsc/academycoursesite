@@ -4,11 +4,11 @@ use App\Core\View;
 <!-- Page Hero Banner -->
 <div style="background-color: var(--color-navy); color: #fff; padding: 4.5rem 0 3.5rem;">
     <div class="container-main">
-        <span class="section-label" style="color: var(--color-gold);">About Meridian Academy</span>
+        <span class="section-label" style="color: var(--color-gold);">About Digital Teenz Academy</span>
         <h1 style="color: #fff; margin-bottom: 1rem;">Empowering Careers Through Practical Excellence</h1>
         <div class="section-divider" style="background-color: var(--color-gold);"></div>
         <p style="color: #D1D5DB; font-size: 1.125rem; max-width: 750px; line-height: 1.8;">
-            Meridian Academy was founded with a singular mission: to bridge the gap between academic theory and real enterprise standards by equipping ambitious learners with battle-tested technical skills and direct employer pathways.
+            Digital Teenz Academy was founded with a singular mission: to bridge the gap between academic theory and real enterprise standards by equipping ambitious learners with battle-tested technical skills and direct employer pathways.
         </p>
     </div>
 </div>
@@ -22,7 +22,7 @@ use App\Core\View;
                     Our Philosophy: Learn by Building
                 </h2>
                 <p style="font-size: 1rem; color: #4B5563; line-height: 1.8; margin-bottom: 1.25rem;">
-                    Traditional academic courses often focus on obsolete syllabi and rote memorization. At Meridian Academy, every curriculum module is co-designed with engineering leaders from modern software companies.
+                    Traditional academic courses often focus on obsolete syllabi and rote memorization. At Digital Teenz Academy, every curriculum module is co-designed with engineering leaders from modern software companies.
                 </p>
                 <p style="font-size: 1rem; color: #4B5563; line-height: 1.8; margin-bottom: 1.5rem;">
                     Students participate in daily standups, code reviews, git workflows, architectural walkthroughs, and mock technical screenings. When you graduate, you don’t merely hold a certificate — you possess an authentic track record of engineering accomplishment.

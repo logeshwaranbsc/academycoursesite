@@ -24,8 +24,8 @@ class SuccessStoryController
             'successStories' => $storyRepo->getActive(),
             'testimonials' => $testimonialRepo->getActive(),
             'courses' => $courseRepo->getActive(),
-            'title' => 'Student Success Stories & Reviews | Meridian Academy',
-            'metaDescription' => 'Read inspiring stories and reviews from Meridian Academy alumni who transformed their careers.',
+            'title' => 'Student Success Stories & Reviews | Digital Teenz Academy',
+            'metaDescription' => 'Read inspiring stories and reviews from Digital Teenz Academy alumni who transformed their careers.',
         ];
 
         return new Response(View::render('public.success-stories', $data));

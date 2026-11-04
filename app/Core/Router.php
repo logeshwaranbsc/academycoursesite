@@ -120,7 +120,7 @@ class Router
             return Response::json(['error' => 'Resource not found.'], 404);
         }
 
-        return new Response(View::render('public.404', ['title' => 'Page Not Found - Meridian Academy']), 404);
+        return new Response(View::render('public.404', ['title' => 'Page Not Found - Digital Teenz Academy']), 404);
     }
 
     private function executeAction(mixed $action, Request $request, array $params): Response

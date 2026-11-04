@@ -16,7 +16,7 @@ class SettingsRepository extends BaseRepository
         if (!$settings) {
             return [
                 'id' => 1,
-                'academy_name' => 'Meridian Academy',
+                'academy_name' => 'Digital Teenz Academy',
                 'logo_url' => null,
                 'email' => 'info@meridianacademy.com',
                 'phone' => '+91 98765 43210',
@@ -69,7 +69,7 @@ class SettingsRepository extends BaseRepository
         } else {
             // Insert initial row
             $sql = "INSERT INTO {$this->table} (id, academy_name, email, phone, whatsapp, address, created_at, updated_at)
-                    VALUES (1, 'Meridian Academy', :email, :phone, :whatsapp, :address, NOW(), NOW())
+                    VALUES (1, 'Digital Teenz Academy', :email, :phone, :whatsapp, :address, NOW(), NOW())
                     RETURNING *";
             $stmt = $this->db()->prepare($sql);
             $stmt->execute([

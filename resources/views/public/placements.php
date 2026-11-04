@@ -8,7 +8,7 @@ use App\Core\View;
         <h1 style="color: #fff; margin-bottom: 1rem;">Student Placements & Hiring Partners</h1>
         <div class="section-divider" style="background-color: var(--color-gold);"></div>
         <p style="color: #D1D5DB; font-size: 1.125rem; max-width: 750px; line-height: 1.8;">
-            Over 94% placement rate across top technology startups, Fortune 500 corporations, and digital agencies. See where Meridian Academy graduates build rewarding careers.
+            Over 94% placement rate across top technology startups, Fortune 500 corporations, and digital agencies. See where Digital Teenz Academy graduates build rewarding careers.
         </p>
     </div>
 </div>

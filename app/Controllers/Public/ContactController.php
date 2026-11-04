@@ -20,8 +20,8 @@ class ContactController
         $data = [
             'settings' => $settingsRepo->get(),
             'courses' => $courseRepo->getActive(),
-            'title' => 'Contact Us & Admissions Support | Meridian Academy',
-            'metaDescription' => 'Get in touch with Meridian Academy admissions advisors for course counselling, batch schedules, and fee details.',
+            'title' => 'Contact Us & Admissions Support | Digital Teenz Academy',
+            'metaDescription' => 'Get in touch with Digital Teenz Academy admissions advisors for course counselling, batch schedules, and fee details.',
         ];
 
         return new Response(View::render('public.contact', $data));

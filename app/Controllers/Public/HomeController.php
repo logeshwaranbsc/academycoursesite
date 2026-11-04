@@ -40,8 +40,8 @@ class HomeController
             'cultureVideos' => $videoRepo->getActive(),
             'galleryItems' => $galleryRepo->getActive(),
             'galleryCategories' => $galleryRepo->getCategories(),
-            'title' => 'Meridian Academy — Build Your Career With Confidence',
-            'metaDescription' => 'Meridian Academy offers industry-relevant professional courses with expert mentorship, practical training, and dedicated career support.',
+            'title' => 'Digital Teenz Academy — Build Your Career With Confidence',
+            'metaDescription' => 'Digital Teenz Academy offers industry-relevant professional courses with expert mentorship, practical training, and dedicated career support.',
         ];
 
         return new Response(View::render('public.home', $data));

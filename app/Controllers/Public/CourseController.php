@@ -19,7 +19,7 @@ class CourseController
         $data = [
             'settings' => $settingsRepo->get(),
             'courses' => $courseRepo->getActive(),
-            'title' => 'Professional Courses & Certification | Meridian Academy',
+            'title' => 'Professional Courses & Certification | Digital Teenz Academy',
             'metaDescription' => 'Explore industry-aligned courses in Web Development, Data Science, Digital Marketing, and UI/UX Design with job placement support.',
         ];
 
@@ -34,7 +34,7 @@ class CourseController
 
         $course = $courseRepo->findActive((int)$id);
         if (!$course) {
-            return new Response(View::render('public.404', ['title' => 'Course Not Found - Meridian Academy']), 404);
+            return new Response(View::render('public.404', ['title' => 'Course Not Found - Digital Teenz Academy']), 404);
         }
 
         $batches = $batchRepo->getUpcomingActive((int)$id);
@@ -43,7 +43,7 @@ class CourseController
             'settings' => $settingsRepo->get(),
             'course' => $course,
             'batches' => $batches,
-            'title' => "{$course['title']} | Meridian Academy",
+            'title' => "{$course['title']} | Digital Teenz Academy",
             'metaDescription' => mb_substr(strip_tags($course['description']), 0, 160),
         ];
 

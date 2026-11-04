@@ -25,8 +25,8 @@ class GalleryController
             'galleryCategories' => $galleryRepo->getCategories(),
             'cultureVideos' => $videoRepo->getActive(),
             'activeCategory' => $category ?: 'All',
-            'title' => 'Campus Life & Photo Gallery | Meridian Academy',
-            'metaDescription' => 'Explore photos and videos of workshops, graduation ceremonies, hackathons, and campus life at Meridian Academy.',
+            'title' => 'Campus Life & Photo Gallery | Digital Teenz Academy',
+            'metaDescription' => 'Explore photos and videos of workshops, graduation ceremonies, hackathons, and campus life at Digital Teenz Academy.',
         ];
 
         return new Response(View::render('public.gallery', $data));
