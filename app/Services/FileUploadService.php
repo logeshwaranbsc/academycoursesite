@@ -68,7 +68,11 @@ class FileUploadService
         $destination = $targetDir . '/' . $filename;
 
         if (!move_uploaded_file($file['tmp_name'], $destination)) {
-            throw new RuntimeException("Failed to store private document.");
+            if (file_exists($file['tmp_name']) && copy($file['tmp_name'], $destination)) {
+                @unlink($file['tmp_name']);
+            } else {
+                throw new RuntimeException("Failed to store private document.");
+            }
         }
 
         return 'private/documents/' . $filename;
@@ -77,8 +81,10 @@ class FileUploadService
     public function download(string $storedPath, string $downloadFilename): void
     {
         $cleanPath = str_replace(['../', '..\\'], '', $storedPath);
+        $cleanPath = str_replace('\\', '/', $cleanPath);
         $filename = basename($cleanPath);
-        $fullPath = $this->privateStorageBase . '/' . $filename;
+        $base = rtrim(str_replace('\\', '/', $this->privateStorageBase), '/');
+        $fullPath = $base . '/' . $filename;
 
         if (!file_exists($fullPath) || !is_file($fullPath)) {
             http_response_code(404);

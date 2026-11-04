@@ -19,7 +19,9 @@ class ImageUploadService
         $this->maxSize = Config::get('storage.max_size', 5242880); // 5MB default
         $this->allowedMimes = Config::get('storage.allowed_image_mimes', [
             'image/jpeg',
+            'image/pjpeg',
             'image/png',
+            'image/x-png',
             'image/webp',
             'image/svg+xml'
         ]);
@@ -102,12 +104,26 @@ class ImageUploadService
 
         // Prevent path traversal
         $realTargetDir = realpath($targetDir);
-        if ($realTargetDir === false || !str_starts_with(dirname($destination), $realTargetDir)) {
+        if ($realTargetDir === false) {
+            throw new RuntimeException("Failed to access upload directory: {$targetDir}");
+        }
+
+        $destination = $realTargetDir . DIRECTORY_SEPARATOR . $filename;
+
+        // Prevent path traversal (normalized for Windows and Unix paths)
+        $normRealTarget = strtolower(rtrim(str_replace('\\', '/', $realTargetDir), '/'));
+        $normDestDir = strtolower(rtrim(str_replace('\\', '/', dirname($destination)), '/'));
+
+        if (!str_starts_with($normDestDir, $normRealTarget)) {
             throw new RuntimeException("Security violation: path traversal detected.");
         }
 
         if (!move_uploaded_file($file['tmp_name'], $destination)) {
-            throw new RuntimeException("Failed to save uploaded file to destination.");
+            if (file_exists($file['tmp_name']) && copy($file['tmp_name'], $destination)) {
+                @unlink($file['tmp_name']);
+            } else {
+                throw new RuntimeException("Failed to save uploaded file to destination.");
+            }
         }
 
         // Return relative path for database storage
@@ -134,16 +150,18 @@ class ImageUploadService
         }
 
         // Clean path and prevent directory traversal
-        $path = str_replace(['../', '..\\'], '', $path);
-        $path = ltrim($path, '/\\');
+        $cleanPath = str_replace(['../', '..\\'], '', $path);
+        $cleanPath = str_replace('\\', '/', $cleanPath);
+        $cleanPath = ltrim($cleanPath, '/');
 
         // Only allow deleting within uploads directory
-        if (!str_starts_with($path, 'uploads/')) {
+        if (!str_starts_with($cleanPath, 'uploads/')) {
             return false;
         }
 
-        $subPath = substr($path, strlen('uploads/'));
-        $fullPath = $this->publicUploadsBase . '/' . $subPath;
+        $subPath = substr($cleanPath, strlen('uploads/'));
+        $base = rtrim(str_replace('\\', '/', $this->publicUploadsBase), '/');
+        $fullPath = $base . '/' . ltrim($subPath, '/');
 
         if (file_exists($fullPath) && is_file($fullPath)) {
             return @unlink($fullPath);

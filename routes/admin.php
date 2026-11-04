@@ -37,11 +37,17 @@ $router->group(['prefix' => '/admin', 'middleware' => [AuthMiddleware::class]], 
     $router->get('/banners', [HeroBannerController::class, 'index']);
     $router->get('/hero-banners', [HeroBannerController::class, 'index']);
     $router->post('/banners', [HeroBannerController::class, 'store'], [CsrfMiddleware::class]);
+    $router->post('/hero-banners', [HeroBannerController::class, 'store'], [CsrfMiddleware::class]);
     $router->post('/banners/{id}', [HeroBannerController::class, 'update'], [CsrfMiddleware::class]);
+    $router->post('/hero-banners/{id}', [HeroBannerController::class, 'update'], [CsrfMiddleware::class]);
     $router->post('/banners/{id}/delete', [HeroBannerController::class, 'destroy'], [CsrfMiddleware::class]);
+    $router->post('/hero-banners/{id}/delete', [HeroBannerController::class, 'destroy'], [CsrfMiddleware::class]);
     $router->delete('/banners/{id}', [HeroBannerController::class, 'destroy'], [CsrfMiddleware::class]);
+    $router->delete('/hero-banners/{id}', [HeroBannerController::class, 'destroy'], [CsrfMiddleware::class]);
     $router->post('/banners/{id}/toggle', [HeroBannerController::class, 'toggleStatus'], [CsrfMiddleware::class]);
+    $router->post('/hero-banners/{id}/toggle', [HeroBannerController::class, 'toggleStatus'], [CsrfMiddleware::class]);
     $router->patch('/banners/{id}/toggle', [HeroBannerController::class, 'toggleStatus'], [CsrfMiddleware::class]);
+    $router->patch('/hero-banners/{id}/toggle', [HeroBannerController::class, 'toggleStatus'], [CsrfMiddleware::class]);
 
     // Courses
     $router->get('/courses', [CourseController::class, 'index']);

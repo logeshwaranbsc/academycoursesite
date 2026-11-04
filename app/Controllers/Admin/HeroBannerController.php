@@ -63,7 +63,8 @@ class HeroBannerController
             return Response::redirect('/admin/banners');
         }
 
-        if (!$request->hasFile('image')) {
+        $file = $request->file('image');
+        if (!$file || ($file['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
             if ($request->isAjax()) {
                 return Response::json(['error' => 'A banner image file is required.'], 422);
             }
@@ -71,8 +72,21 @@ class HeroBannerController
             return Response::redirect('/admin/banners');
         }
 
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            $msg = match ($file['error']) {
+                UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE => 'The uploaded banner image exceeds the server upload limit.',
+                UPLOAD_ERR_PARTIAL => 'The uploaded banner image was only partially uploaded.',
+                default => 'An error occurred during image upload (Error Code: ' . $file['error'] . ').',
+            };
+            if ($request->isAjax()) {
+                return Response::json(['error' => $msg], 422);
+            }
+            flash('error', $msg, 'error');
+            return Response::redirect('/admin/banners');
+        }
+
         try {
-            $data['image_url'] = $this->uploadService->upload($request->file('image'), 'banners');
+            $data['image_url'] = $this->uploadService->upload($file, 'banners');
         } catch (\Exception $e) {
             if ($request->isAjax()) {
                 return Response::json(['error' => $e->getMessage()], 422);
@@ -84,10 +98,10 @@ class HeroBannerController
         $banner = $this->repo->create($data);
 
         if ($request->isAjax()) {
-            return Response::json(['success' => true, 'message' => 'Hero banner added.', 'data' => $banner]);
+            return Response::json(['success' => true, 'message' => 'Hero banner added successfully.', 'data' => $banner]);
         }
 
-        flash('success', 'Hero banner added.');
+        flash('success', 'Hero banner added successfully.');
         return Response::redirect('/admin/banners');
     }
 
@@ -125,9 +139,23 @@ class HeroBannerController
             return Response::redirect('/admin/banners');
         }
 
-        if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        if ($file && $file['error'] !== UPLOAD_ERR_NO_FILE) {
+            if ($file['error'] !== UPLOAD_ERR_OK) {
+                $msg = match ($file['error']) {
+                    UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE => 'The uploaded banner image exceeds the server upload limit.',
+                    UPLOAD_ERR_PARTIAL => 'The uploaded banner image was only partially uploaded.',
+                    default => 'An error occurred during image upload (Error Code: ' . $file['error'] . ').',
+                };
+                if ($request->isAjax()) {
+                    return Response::json(['error' => $msg], 422);
+                }
+                flash('error', $msg, 'error');
+                return Response::redirect('/admin/banners');
+            }
+
             try {
-                $data['image_url'] = $this->uploadService->replace($request->file('image'), 'banners', $banner['image_url']);
+                $data['image_url'] = $this->uploadService->replace($file, 'banners', $banner['image_url']);
             } catch (\Exception $e) {
                 if ($request->isAjax()) {
                     return Response::json(['error' => $e->getMessage()], 422);
@@ -140,10 +168,10 @@ class HeroBannerController
         $updated = $this->repo->update($id, $data);
 
         if ($request->isAjax()) {
-            return Response::json(['success' => true, 'message' => 'Hero banner updated.', 'data' => $updated]);
+            return Response::json(['success' => true, 'message' => 'Hero banner updated successfully.', 'data' => $updated]);
         }
 
-        flash('success', 'Hero banner updated.');
+        flash('success', 'Hero banner updated successfully.');
         return Response::redirect('/admin/banners');
     }
 

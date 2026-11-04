@@ -225,7 +225,7 @@ $lastPage = $pagination['last_page'] ?? 1;
 <script>
 function editBanner(item) {
     const form = document.getElementById('edit-banner-form');
-    form.action = '<?= base_url("admin/banners/") ?>' + item.id;
+    form.action = '<?= base_url("admin/banners") ?>/' + item.id;
 
     document.getElementById('edit-banner-title').value = item.title || '';
     document.getElementById('edit-banner-subtitle').value = item.subtitle || '';
@@ -236,7 +236,7 @@ function editBanner(item) {
 
     const prev = document.getElementById('edit-banner-preview');
     if (item.image_url) {
-        prev.src = '<?= base_url() ?>' + '/' + item.image_url.replace(/^\//, '');
+        prev.src = '<?= base_url() ?>/' + item.image_url.replace(/^\//, '');
         prev.style.display = 'block';
     } else {
         prev.style.display = 'none';

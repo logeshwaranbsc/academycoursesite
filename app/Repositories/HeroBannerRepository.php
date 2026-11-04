@@ -58,15 +58,22 @@ class HeroBannerRepository extends BaseRepository
                 RETURNING *";
         $stmt = $this->db()->prepare($sql);
         $stmt->execute([
-            ':title' => $data['title'] ?? null,
-            ':subtitle' => $data['subtitle'] ?? null,
+            ':title' => !empty($data['title']) ? $data['title'] : null,
+            ':subtitle' => !empty($data['subtitle']) ? $data['subtitle'] : null,
             ':image_url' => $data['image_url'],
-            ':button_text' => $data['button_text'] ?? null,
-            ':button_link' => $data['button_link'] ?? null,
+            ':button_text' => !empty($data['button_text']) ? $data['button_text'] : null,
+            ':button_link' => !empty($data['button_link']) ? $data['button_link'] : null,
             ':status' => $data['status'] ?? 'active',
             ':display_order' => (int)($data['display_order'] ?? 0),
         ]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$row) {
+            $lastId = (int)$this->db()->lastInsertId();
+            if ($lastId > 0) {
+                $row = $this->find($lastId);
+            }
+        }
+        return $row ?: [];
     }
 
     public function update(int $id, array $data): ?array
@@ -77,7 +84,7 @@ class HeroBannerRepository extends BaseRepository
         foreach (['title', 'subtitle', 'image_url', 'button_text', 'button_link', 'status', 'display_order'] as $field) {
             if (array_key_exists($field, $data)) {
                 $fields[] = "{$field} = :{$field}";
-                $params[":{$field}"] = $data[$field];
+                $params[":{$field}"] = ($data[$field] === '' && in_array($field, ['title', 'subtitle', 'button_text', 'button_link'], true)) ? null : $data[$field];
             }
         }
 
@@ -92,6 +99,9 @@ class HeroBannerRepository extends BaseRepository
         $stmt = $this->db()->prepare($sql);
         $stmt->execute($params);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$row) {
+            $row = $this->find($id);
+        }
         return $row ?: null;
     }
 }
