@@ -215,4 +215,157 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => toast.remove(), 300);
         }, 4000);
     };
+
+    // ── 8. Freaky Highlights Interactive 3D Physics & Canvas ──
+    const highlightsSection = document.getElementById('highlights');
+    const freakyCards = document.querySelectorAll('.freaky-card');
+
+    if (highlightsSection && freakyCards.length > 0) {
+        // A. Scroll-Triggered Staggered In-View Reveal
+        if ('IntersectionObserver' in window) {
+            const cardObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        freakyCards.forEach((card, idx) => {
+                            setTimeout(() => {
+                                card.classList.add('is-revealed');
+                                card.classList.remove('reveal-init');
+                            }, idx * 120);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            const cardsContainer = document.getElementById('freaky-cards-container');
+            if (cardsContainer) cardObserver.observe(cardsContainer);
+        } else {
+            freakyCards.forEach(c => {
+                c.classList.add('is-revealed');
+                c.classList.remove('reveal-init');
+            });
+        }
+
+        // B. Laser Border Beam Rotation
+        let beamAngle = 0;
+        let isSectionVisible = true;
+
+        const animateLaserBeam = () => {
+            if (isSectionVisible) {
+                beamAngle = (beamAngle + 1.2) % 360;
+                highlightsSection.style.setProperty('--beam-angle', `${beamAngle}deg`);
+            }
+            requestAnimationFrame(animateLaserBeam);
+        };
+        requestAnimationFrame(animateLaserBeam);
+
+        // C. 3D Magnetic Tilt & Dynamic Mouse Glare
+        freakyCards.forEach(card => {
+            let bounds = null;
+
+            const onMouseEnter = () => {
+                bounds = card.getBoundingClientRect();
+                card.style.transition = 'transform 0.12s ease-out, box-shadow 0.3s ease';
+            };
+
+            const onMouseMove = (e) => {
+                if (!bounds) bounds = card.getBoundingClientRect();
+                const mouseX = e.clientX - bounds.left;
+                const mouseY = e.clientY - bounds.top;
+
+                const centerX = bounds.width / 2;
+                const centerY = bounds.height / 2;
+
+                const rotateX = -((mouseY - centerY) / centerY) * 14;
+                const rotateY = ((mouseX - centerX) / centerX) * 14;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.04, 1.04, 1.04)`;
+                card.style.setProperty('--mouse-x', `${mouseX}px`);
+                card.style.setProperty('--mouse-y', `${mouseY}px`);
+            };
+
+            const onMouseLeave = () => {
+                card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease';
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            };
+
+            card.addEventListener('mouseenter', onMouseEnter);
+            card.addEventListener('mousemove', onMouseMove);
+            card.addEventListener('mouseleave', onMouseLeave);
+        });
+
+        // D. Lightweight Ambient Canvas Dust Particles
+        const canvas = document.getElementById('freaky-particle-canvas');
+        if (canvas && canvas.getContext) {
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+
+            const resizeCanvas = () => {
+                canvas.width = highlightsSection.offsetWidth;
+                canvas.height = highlightsSection.offsetHeight;
+            };
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas, { passive: true });
+
+            const particleColors = [
+                'rgba(200, 155, 60, ',   // Meridian Warm Gold
+                'rgba(16, 36, 62, ',     // Deep Navy
+                'rgba(179, 131, 40, ',   // Amber Bronze
+                'rgba(3, 105, 161, '     // Sapphire Blue
+            ];
+
+            const count = Math.min(30, Math.floor(window.innerWidth / 40));
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2 + 0.8,
+                    colorBase: particleColors[i % particleColors.length],
+                    alpha: Math.random() * 0.25 + 0.1,
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: -Math.random() * 0.5 - 0.15,
+                    pulseSpeed: Math.random() * 0.02 + 0.01,
+                    pulseOffset: Math.random() * Math.PI * 2
+                });
+            }
+
+            let tick = 0;
+            const drawParticles = () => {
+                if (isSectionVisible) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    tick += 0.02;
+
+                    for (let p of particles) {
+                        p.x += p.vx;
+                        p.y += p.vy;
+
+                        if (p.y < -10) p.y = canvas.height + 10;
+                        if (p.x < -10) p.x = canvas.width + 10;
+                        if (p.x > canvas.width + 10) p.x = -10;
+
+                        const currentAlpha = p.alpha + Math.sin(tick + p.pulseOffset) * 0.08;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `${p.colorBase}${Math.max(0.04, Math.min(0.4, currentAlpha))})`;
+                        ctx.shadowBlur = 6;
+                        ctx.shadowColor = `${p.colorBase}0.4)`;
+                        ctx.fill();
+                    }
+                }
+                requestAnimationFrame(drawParticles);
+            };
+
+            // Pause animations when section is offscreen to preserve battery & CPU
+            if ('IntersectionObserver' in window) {
+                const visObserver = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        isSectionVisible = entry.isIntersecting;
+                    });
+                }, { threshold: 0.05 });
+                visObserver.observe(highlightsSection);
+            }
+
+            drawParticles();
+        }
+    }
 });

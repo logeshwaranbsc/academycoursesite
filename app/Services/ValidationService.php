@@ -21,16 +21,17 @@ class ValidationService
                     $params = explode(',', $paramStr);
                 }
 
-                $this->applyRule($field, $value, $rule, $params);
+                $this->applyRule($field, $value, $rule, $params, $fieldRules);
             }
         }
 
         return empty($this->errors);
     }
 
-    private function applyRule(string $field, mixed $value, string $rule, array $params): void
+    private function applyRule(string $field, mixed $value, string $rule, array $params, array $fieldRules = []): void
     {
         $label = ucfirst(str_replace('_', ' ', $field));
+        $isNumeric = in_array('numeric', $fieldRules, true) || in_array('integer', $fieldRules, true);
 
         switch ($rule) {
             case 'required':
@@ -46,7 +47,7 @@ class ValidationService
                 break;
 
             case 'phone':
-                if (!empty($value) && !preg_match('/^[+\d\s()-]{7,20}$/', (string)$value)) {
+                if (!empty($value) && !preg_match('/^[+\d\s().-]{7,25}$/', (string)$value)) {
                     $this->addError($field, "{$label} must be a valid phone number.");
                 }
                 break;
@@ -71,19 +72,39 @@ class ValidationService
 
             case 'min':
                 $min = (int)($params[0] ?? 0);
-                if (is_numeric($value) && (float)$value < $min) {
-                    $this->addError($field, "{$label} must be at least {$min}.");
-                } elseif (is_string($value) && mb_strlen($value) < $min) {
-                    $this->addError($field, "{$label} must be at least {$min} characters.");
+                if ($value !== null && $value !== '') {
+                    if ($isNumeric || is_int($value) || is_float($value)) {
+                        if ((float)$value < $min) {
+                            $this->addError($field, "{$label} must be at least {$min}.");
+                        }
+                    } elseif (is_array($value)) {
+                        if (count($value) < $min) {
+                            $this->addError($field, "{$label} must contain at least {$min} items.");
+                        }
+                    } else {
+                        if (mb_strlen((string)$value) < $min) {
+                            $this->addError($field, "{$label} must be at least {$min} characters.");
+                        }
+                    }
                 }
                 break;
 
             case 'max':
                 $max = (int)($params[0] ?? 255);
-                if (is_numeric($value) && (float)$value > $max) {
-                    $this->addError($field, "{$label} must not exceed {$max}.");
-                } elseif (is_string($value) && mb_strlen($value) > $max) {
-                    $this->addError($field, "{$label} must not exceed {$max} characters.");
+                if ($value !== null && $value !== '') {
+                    if ($isNumeric || is_int($value) || is_float($value)) {
+                        if ((float)$value > $max) {
+                            $this->addError($field, "{$label} must not exceed {$max}.");
+                        }
+                    } elseif (is_array($value)) {
+                        if (count($value) > $max) {
+                            $this->addError($field, "{$label} must not contain more than {$max} items.");
+                        }
+                    } else {
+                        if (mb_strlen((string)$value) > $max) {
+                            $this->addError($field, "{$label} must not exceed {$max} characters.");
+                        }
+                    }
                 }
                 break;
 
