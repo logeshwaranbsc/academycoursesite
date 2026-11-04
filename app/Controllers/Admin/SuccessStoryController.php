@@ -34,7 +34,7 @@ class SuccessStoryController
         return new Response(View::render('admin.success-stories.index', [
             'pagination' => $pagination,
             'search' => $search,
-            'title' => 'Success Stories — Meridian Admin',
+            'title' => 'Success Stories — Digital Teenz Academy Admin',
             'currentNav' => 'success-stories',
         ], 'admin-layout'));
     }

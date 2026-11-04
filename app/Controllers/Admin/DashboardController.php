@@ -46,7 +46,7 @@ class DashboardController
 
         return new Response(View::render('admin.dashboard', [
             'stats' => $stats,
-            'title' => 'Dashboard Overview — Meridian Admin',
+            'title' => 'Dashboard Overview — Digital Teenz Academy Admin',
             'currentNav' => 'dashboard',
         ], 'admin-layout'));
     }

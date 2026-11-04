@@ -18,7 +18,7 @@ class SettingsRepository extends BaseRepository
                 'id' => 1,
                 'academy_name' => 'Digital Teenz Academy',
                 'logo_url' => null,
-                'email' => 'info@meridianacademy.com',
+                'email' => 'info@Digital Teenz Academyacademy.com',
                 'phone' => '+91 98765 43210',
                 'whatsapp' => '+91 98765 43210',
                 'address' => '123, Education Hub, Koramangala, Bangalore – 560 095',
@@ -73,7 +73,7 @@ class SettingsRepository extends BaseRepository
                     RETURNING *";
             $stmt = $this->db()->prepare($sql);
             $stmt->execute([
-                ':email' => $data['email'] ?? 'info@meridianacademy.com',
+                ':email' => $data['email'] ?? 'info@Digital Teenz Academyacademy.com',
                 ':phone' => $data['phone'] ?? null,
                 ':whatsapp' => $data['whatsapp'] ?? null,
                 ':address' => $data['address'] ?? null,

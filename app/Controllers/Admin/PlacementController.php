@@ -34,7 +34,7 @@ class PlacementController
         return new Response(View::render('admin.placements.index', [
             'pagination' => $pagination,
             'search' => $search,
-            'title' => 'Placed Students — Meridian Admin',
+            'title' => 'Placed Students — Digital Teenz Academy Admin',
             'currentNav' => 'placements',
         ], 'admin-layout'));
     }

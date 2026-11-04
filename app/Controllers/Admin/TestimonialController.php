@@ -34,7 +34,7 @@ class TestimonialController
         return new Response(View::render('admin.testimonials.index', [
             'pagination' => $pagination,
             'search' => $search,
-            'title' => 'Testimonials — Meridian Admin',
+            'title' => 'Testimonials — Digital Teenz Academy Admin',
             'currentNav' => 'testimonials',
         ], 'admin-layout'));
     }

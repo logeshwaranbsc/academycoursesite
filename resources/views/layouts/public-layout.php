@@ -3,7 +3,7 @@
 $academyName = $settings['academy_name'] ?? 'Digital Teenz Academy';
 $logoUrl = $settings['logo_url'] ?? '';
 $phone = $settings['phone'] ?? '+91 98765 43210';
-$email = $settings['email'] ?? 'info@meridianacademy.com';
+$email = $settings['email'] ?? 'info@Digital Teenz Academyacademy.com';
 $address = $settings['address'] ?? '123, Education Hub, Koramangala, Bangalore – 560 095';
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 ?>

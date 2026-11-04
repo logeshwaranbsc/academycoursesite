@@ -38,7 +38,7 @@ class GalleryController
             'categories' => $categories,
             'search' => $search,
             'selectedCategory' => $category,
-            'title' => 'Gallery Management — Meridian Admin',
+            'title' => 'Gallery Management — Digital Teenz Academy Admin',
             'currentNav' => 'gallery',
         ], 'admin-layout'));
     }

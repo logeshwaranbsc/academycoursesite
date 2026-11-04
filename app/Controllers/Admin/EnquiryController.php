@@ -36,7 +36,7 @@ class EnquiryController
             'newCount' => $this->repo->countByStatus('new'),
             'contactedCount' => $this->repo->countByStatus('contacted'),
             'closedCount' => $this->repo->countByStatus('closed'),
-            'title' => 'Enquiries Management — Meridian Admin',
+            'title' => 'Enquiries Management — Digital Teenz Academy Admin',
             'currentNav' => 'enquiries',
         ], 'admin-layout'));
     }

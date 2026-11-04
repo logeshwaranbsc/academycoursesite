@@ -36,7 +36,7 @@ class BatchController
             'pagination' => $pagination,
             'courses' => $courses,
             'search' => $search,
-            'title' => 'Batch Management — Meridian Admin',
+            'title' => 'Batch Management — Digital Teenz Academy Admin',
             'currentNav' => 'batches',
         ], 'admin-layout'));
     }

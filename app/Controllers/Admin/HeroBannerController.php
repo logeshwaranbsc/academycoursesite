@@ -34,7 +34,7 @@ class HeroBannerController
         return new Response(View::render('admin.banners.index', [
             'pagination' => $pagination,
             'search' => $search,
-            'title' => 'Hero Banner Management — Meridian Admin',
+            'title' => 'Hero Banner Management — Digital Teenz Academy Admin',
             'currentNav' => 'hero-banners',
         ], 'admin-layout'));
     }

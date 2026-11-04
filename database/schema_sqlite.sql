@@ -161,11 +161,11 @@ CREATE TABLE IF NOT EXISTS enquiries (
 -- =============================================================================
 
 INSERT OR IGNORE INTO admins (name, email, password)
-VALUES ('Administrator', 'admin@meridianacademy.com', '$2y$10$iJ4T6oVZx3aa3o.Huk9OauoepRwPvRyLK/yw4W1RiF5iZqrDfgIAK');
+VALUES ('Administrator', 'admin@Digital Teenz Academyacademy.com', '$2y$10$iJ4T6oVZx3aa3o.Huk9OauoepRwPvRyLK/yw4W1RiF5iZqrDfgIAK');
 
 INSERT OR IGNORE INTO admins (name, email, password)
 VALUES ('Administrator', 'admin@gmail.com', '$2y$10$iJ4T6oVZx3aa3o.Huk9OauoepRwPvRyLK/yw4W1RiF5iZqrDfgIAK');
 
 INSERT OR IGNORE INTO site_settings (id, academy_name, email, phone, whatsapp, address)
-VALUES (1, 'Digital Teenz Academy', 'info@meridianacademy.com', '+91 98765 43210', '+91 98765 43210', '123, Education Hub, Koramangala, Bangalore – 560 095');
+VALUES (1, 'Digital Teenz Academy', 'info@Digital Teenz Academyacademy.com', '+91 98765 43210', '+91 98765 43210', '123, Education Hub, Koramangala, Bangalore – 560 095');
 

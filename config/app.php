@@ -7,5 +7,5 @@ return [
     'url' => rtrim($_ENV['APP_URL'] ?? 'http://localhost:8000', '/'),
     'timezone' => 'Asia/Kolkata',
     'session_lifetime' => (int)($_ENV['SESSION_LIFETIME'] ?? 7200),
-    'session_name' => 'meridian_session',
+    'session_name' => 'Digital Teenz Academy_session',
 ];

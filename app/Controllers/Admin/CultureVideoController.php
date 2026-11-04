@@ -34,7 +34,7 @@ class CultureVideoController
         return new Response(View::render('admin.culture-videos.index', [
             'pagination' => $pagination,
             'search' => $search,
-            'title' => 'Culture Videos — Meridian Admin',
+            'title' => 'Culture Videos — Digital Teenz Academy Admin',
             'currentNav' => 'culture-videos',
         ], 'admin-layout'));
     }

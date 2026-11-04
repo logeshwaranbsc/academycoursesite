@@ -30,7 +30,7 @@ class SettingsController
 
         return new Response(View::render('admin.settings.index', [
             'settings' => $settings,
-            'title' => 'Website Settings — Meridian Admin',
+            'title' => 'Website Settings — Digital Teenz Academy Admin',
             'currentNav' => 'settings',
         ], 'admin-layout'));
     }

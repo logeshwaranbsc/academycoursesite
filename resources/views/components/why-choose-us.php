@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <!-- Left: Headline & Stats -->
             <div>
-                <span class="section-label">Why Choose Meridian</span>
+                <span class="section-label">Why Choose Digital Teenz Academy</span>
                 <h2 class="section-title">An Education Built For The Real World</h2>
                 <div class="section-divider"></div>
                 <p style="font-size: 1rem; color: #4B5563; line-height: 1.8; margin-bottom: 2rem;">

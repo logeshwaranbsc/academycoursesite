@@ -425,7 +425,7 @@ INSERT INTO site_settings (
 ) VALUES (
     1,
     'Digital Teenz Academy',
-    'info@meridianacademy.com',
+    'info@Digital Teenz Academyacademy.com',
     '+91 98765 43210',
     '+91 98765 43210',
     '123, Education Hub, Koramangala, Bangalore – 560 095'
@@ -558,7 +558,7 @@ RETURNING id, name, status, updated_at;
 /*
 UPDATE admins
 SET    password = '$2y$12$PASTE_YOUR_NEW_BCRYPT_HASH_HERE'
-WHERE  email    = 'admin@meridianacademy.com'
+WHERE  email    = 'admin@Digital Teenz Academyacademy.com'
 RETURNING id, name, email, updated_at;
 */
 

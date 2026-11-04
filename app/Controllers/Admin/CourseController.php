@@ -34,7 +34,7 @@ class CourseController
         return new Response(View::render('admin.courses.index', [
             'pagination' => $pagination,
             'search' => $search,
-            'title' => 'Course Management — Meridian Admin',
+            'title' => 'Course Management — Digital Teenz Academy Admin',
             'currentNav' => 'courses',
         ], 'admin-layout'));
     }

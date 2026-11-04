@@ -57,7 +57,7 @@ $navItems = [
                     M
                 </div>
                 <div>
-                    <h3 style="color: #fff; font-size: 1rem; margin: 0; font-family: var(--font-heading);">Meridian</h3>
+                    <h3 style="color: #fff; font-size: 1rem; margin: 0; font-family: var(--font-heading);">Digital Teenz Academy</h3>
                     <span style="font-size: 0.75rem; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.05em;">Admin Portal</span>
                 </div>
             </div>
