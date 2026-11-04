@@ -1,0 +1,22 @@
+{
+    "name": "academy/courses-site",
+    "description": "Academy Courses Website - Core PHP Architecture",
+    "type": "project",
+    "require": {
+        "php": ">=8.2",
+        "ext-pdo": "*",
+        "ext-fileinfo": "*",
+        "ext-mbstring": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/Helpers/functions.php",
+            "app/Helpers/response.php",
+            "app/Helpers/upload.php"
+        ]
+    }
+}
